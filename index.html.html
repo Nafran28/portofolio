@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nafran Budiman | Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#0d0e12',
+                        cardbg: '#161821',
+                        borderglow: '#2a2e3d',
+                        accent: '#3b82f6',
+                        accentglow: '#60a5fa',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0d0e12;
+            color: #f3f4f6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        .glow-card {
+            background: linear-gradient(145deg, rgba(22, 24, 33, 0.9), rgba(15, 17, 23, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .glow-card:hover {
+            border-color: rgba(96, 165, 250, 0.4);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.2);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        }
+        .gradient-btn:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+        /* Custom Toast Animation */
+        #toast {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-200 bg-darkbg">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 transform translate-y-20 opacity-0 z-50 bg-blue-600 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 transition-all duration-300 pointer-events-none">
+        <i class="fas fa-check-circle text-xl"></i>
+        <span id="toast-message" class="font-medium text-sm">Email berhasil disalin!</span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-darkbg/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl gradient-btn flex items-center justify-center font-bold text-white text-xl shadow-lg group-hover:scale-105 transition-transform">
+                    N
+                </div>
+                <span class="font-bold text-lg sm:text-xl tracking-tight text-white group-hover:text-blue-400 transition-colors">
+                    Nafran<span class="text-blue-500">.</span>
+                </span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-400">
+                <a href="#about" class="hover:text-white transition-colors">About</a>
+                <a href="#skills" class="hover:text-white transition-colors">What I Can Do</a>
+                <a href="#achievements" class="hover:text-white transition-colors">Achievements</a>
+                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-3">
+                <button onclick="copySourceCode()" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold border border-blue-500/30 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 hover:border-blue-500/50 transition-all flex items-center space-x-2">
+                    <i class="fas fa-code"></i>
+                    <span class="hidden sm:inline">Export / Code</span>
+                </button>
+                <a href="#contact" class="gradient-btn px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white shadow-md hover:scale-105 transition-transform">
+                    Hubungi Saya
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero & About Section -->
+    <section id="about" class="pt-32 pb-20 md:pt-40 md:pb-28 relative overflow-hidden">
+        <!-- Background Glow Orbs -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-72 h-72 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Details -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs sm:text-sm font-medium">
+                        <span class="flex h-2 w-2 rounded-full bg-blue-400 animate-pulse"></span>
+                        <span>Mahasiswa Baru S1 Sistem Informasi</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                        Halo, Saya <br class="hidden sm:inline"/><span class="gradient-text">Nafran Budiman</span>
+                    </h1>
+
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        Saya merupakan mahasiswa baru S1 Sistem Informasi <strong class="text-gray-200">Universitas Negeri Surabaya (UNESA)</strong> dengan latar belakang aktif dalam organisasi, kepanitiaan, dan kepelatihan sejak SMA. Berbekal pengalaman dalam koordinasi tim dan perencanaan acara, saya tertarik mengembangkan kemampuan di bidang Informatika, khususnya melalui kolaborasi, pemecahan masalah, dan pemanfaatan teknologi untuk memberikan dampak positif.
+                    </p>
+
+                    <!-- Background Tags -->
+                    <div class="pt-2 flex flex-wrap justify-center lg:justify-start gap-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-gray-300 flex items-center space-x-1.5">
+                            <i class="fas fa-flag text-blue-400"></i>
+                            <span>Paskibra</span>
+                        </span>
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-gray-300 flex items-center space-x-1.5">
+                            <i class="fas fa-users text-purple-400"></i>
+                            <span>BPH Satramansi</span>
+                        </span>
+                        <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-gray-300 flex items-center space-x-1.5">
+                            <i class="fas fa-calendar-check text-emerald-400"></i>
+                            <span>Kepanitiaan</span>
+                        </span>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#skills" class="w-full sm:w-auto px-7 py-3.5 rounded-xl gradient-btn text-white font-semibold text-sm flex items-center justify-center space-x-2">
+                            <span>Lihat Skill & Keahlian</span>
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                        <button onclick="copyEmail('nafranbudiman@gmail.com')" class="w-full sm:w-auto px-7 py-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-gray-200 font-semibold text-sm transition-all flex items-center justify-center space-x-2">
+                            <i class="far fa-copy text-blue-400"></i>
+                            <span>Salin Email</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Visual / Avatar Box -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-sm">
+                        <!-- Card Frame -->
+                        <div class="glow-card rounded-3xl p-6 sm:p-8 relative z-10 text-center">
+                            <!-- Profile Photo Container -->
+                            <div class="relative group w-48 h-60 sm:w-56 sm:h-72 mx-auto rounded-2xl overflow-hidden gradient-btn p-1 mb-5 shadow-2xl">
+                                <div class="w-full h-full bg-darkbg rounded-[14px] overflow-hidden relative">
+                                    <!-- PENTING: Pastikan file foto di folder Anda sudah di-rename menjadi 'profil.jpg' (tanpa spasi, huruf kecil semua) agar muncul di GitHub -->
+                                    <img id="profileImage" src="profil.jpg" alt="Nafran Budiman - Almamater UNESA" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center text-blue-400 bg-darkbg p-4 text-center\'><i class=\'fas fa-user-graduate text-5xl mb-2\'></i><span class=\'text-xs text-gray-300 font-medium\'>Foto Profil (Klik Ganti Foto di bawah)</span></div>';">
+                                    
+                                    <!-- Photo Upload Overlay Button -->
+                                    <label for="uploadPhotoInput" class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center cursor-pointer text-white text-xs font-medium space-y-1">
+                                        <i class="fas fa-camera text-2xl text-blue-400"></i>
+                                        <span>Ganti / Pilih Foto</span>
+                                    </label>
+                                    <input type="file" id="uploadPhotoInput" accept="image/*" class="hidden" onchange="previewUploadedPhoto(event)">
+                                </div>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-white">Nafran Budiman</h3>
+                            <p class="text-xs text-blue-400 font-semibold mt-1">S1 Sistem Informasi • UNESA</p>
+
+                            <div class="mt-5 pt-5 border-t border-white/10 grid grid-cols-2 gap-3 text-left">
+                                <div>
+                                    <p class="text-[11px] text-gray-500">Status</p>
+                                    <p class="text-xs font-semibold text-gray-200">Mahasiswa Baru</p>
+                                </div>
+                                <div>
+                                    <p class="text-[11px] text-gray-500">Fokus Bidang</p>
+                                    <p class="text-xs font-semibold text-gray-200">Informatika & SI</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- What I Can Do Section -->
+    <section id="skills" class="py-20 relative bg-black/20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-blue-400 mb-2">Capabilities</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">What I Can Do</h3>
+                <p class="text-gray-400 mt-3 text-sm sm:text-base">Daftar skill & keahlian yang dikembangkan melalui organisasi, kepanitiaan, dan pengalaman kepelatihan.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Category 1: Soft Skills -->
+                <div class="glow-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-xl mb-6">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Soft Skills</h4>
+                        <p class="text-xs text-gray-400 mb-6">Dikembangkan melalui Paskibra, BPH Satramansi, dan kepanitiaan.</p>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-blue-500/40 transition-colors">Leadership</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-blue-500/40 transition-colors">Team Coordination</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-blue-500/40 transition-colors">Event Planning</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-blue-500/40 transition-colors">Communication</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-blue-500/40 transition-colors">Teamwork</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-blue-500/40 transition-colors">Problem Solving</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-blue-500/40 transition-colors">Responsibility</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-blue-500/40 transition-colors">Time Management</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Organizational & Event Skills -->
+                <div class="glow-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center text-xl mb-6">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Organizational & Event</h4>
+                        <p class="text-xs text-gray-400 mb-6">Pengalaman operasional & manajemen kegiatan.</p>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-purple-500/40 transition-colors">Event Coordination</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-purple-500/40 transition-colors">Program Planning</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-purple-500/40 transition-colors">Team Collaboration</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-purple-500/40 transition-colors">Health & First Aid Support</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-purple-500/40 transition-colors">Volunteer Coordination</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Digital & Technical Skills -->
+                <div class="glow-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-6">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Digital & Technical</h4>
+                        <p class="text-xs text-gray-400 mb-6">Kemampuan teknis dasar & komunikasi digital.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-emerald-500/40 transition-colors">Digital Communication</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-emerald-500/40 transition-colors">IT Fundamentals</span>
+                            <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-gray-200 hover:border-emerald-500/40 transition-colors">English Communication</span>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Tools Placeholder Container -->
+                    <div class="p-4 rounded-xl bg-white/[0.02] border border-dashed border-white/10">
+                        <div class="flex items-center justify-between text-xs text-gray-400 mb-2">
+                            <span>Programming & Tools</span>
+                            <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">In Learning</span>
+                        </div>
+                        <p class="text-[11px] text-gray-500 italic">Bahasa pemrograman & software tools akan diperbarui seiring berjalannya perkuliahan.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-20 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-blue-400 mb-2">Track Record</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Achievements & Experience</h3>
+                <p class="text-gray-400 mt-3 text-sm sm:text-base">Pengalaman kepemimpinan dan amanah tanggung jawab yang pernah diemban.</p>
+            </div>
+
+            <!-- Timeline -->
+            <div class="max-w-3xl mx-auto space-y-6">
+                
+                <!-- Item 1 -->
+                <div class="glow-card rounded-2xl p-6 sm:p-8 flex items-start space-x-4 sm:space-x-6">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 text-xl">
+                        <i class="fas fa-boxes-packing"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                            <h4 class="text-lg font-bold text-white">Wakil Sarpras</h4>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 w-max mt-1 sm:mt-0">2023 – 2024</span>
+                        </div>
+                        <p class="text-sm font-medium text-gray-300">Satramansi</p>
+                        <p class="text-xs text-gray-400 mt-2 leading-relaxed">Bertanggung jawab dalam pengelolaan sarana, prasarana, logistik perlengkapan, serta koordinasi teknis operasional kegiatan organisasi.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="glow-card rounded-2xl p-6 sm:p-8 flex items-start space-x-4 sm:space-x-6">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center shrink-0 text-xl">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                            <h4 class="text-lg font-bold text-white">Bendahara 1</h4>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 w-max mt-1 sm:mt-0">2024 – 2025</span>
+                        </div>
+                        <p class="text-sm font-medium text-gray-300">Satramansi</p>
+                        <p class="text-xs text-gray-400 mt-2 leading-relaxed">Mengelola pencatatan keuangan, penyusunan anggaran kegiatan, dan akuntabilitas pelaporan dana organisasi secara transparan.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="glow-card rounded-2xl p-6 sm:p-8 flex items-start space-x-4 sm:space-x-6">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 text-xl">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                            <h4 class="text-lg font-bold text-white">Tim Pelatih Eksternal</h4>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 w-max mt-1 sm:mt-0">2024 – 2026</span>
+                        </div>
+                        <p class="text-sm font-medium text-gray-300">Paskibra</p>
+                        <p class="text-xs text-gray-400 mt-2 leading-relaxed">Memandu, melatih, dan membina kedisiplinan serta keterampilan baris-berbaris anggota Paskibra eksternal secara profesional.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative bg-black/30 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Info -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <h2 class="text-xs font-bold uppercase tracking-widest text-blue-400 mb-2">Get In Touch</h2>
+                        <h3 class="text-3xl font-extrabold text-white">Mari Berkolaborasi</h3>
+                        <p class="text-gray-400 text-sm mt-3 leading-relaxed">Tertarik untuk berdiskusi, berkolaborasi dalam proyek, atau sekadar menyapa? Silakan hubungi saya melalui email atau form yang tersedia.</p>
+                    </div>
+
+                    <!-- Email Card -->
+                    <div class="glow-card rounded-2xl p-6 flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-lg">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500">Email Utama</p>
+                                <a href="mailto:nafranbudiman@gmail.com" class="text-sm font-semibold text-white hover:text-blue-400 transition-colors">nafranbudiman@gmail.com</a>
+                            </div>
+                        </div>
+                        <button onclick="copyEmail('nafranbudiman@gmail.com')" title="Salin Email" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors">
+                            <i class="far fa-copy text-sm"></i>
+                        </button>
+                    </div>
+
+                    <!-- Social / Student Links Placeholder -->
+                    <div class="glow-card rounded-2xl p-6 space-y-4">
+                        <p class="text-xs font-semibold uppercase text-gray-400 tracking-wider">Tautan Profesional</p>
+                        <div class="flex space-x-3">
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 px-4 rounded-xl bg-white/5 border border-white/10 text-xs font-medium text-gray-300 hover:bg-white/10 hover:text-white transition-all flex items-center justify-center space-x-2">
+                                <i class="fab fa-github text-sm"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 px-4 rounded-xl bg-white/5 border border-white/10 text-xs font-medium text-gray-300 hover:bg-white/10 hover:text-white transition-all flex items-center justify-center space-x-2">
+                                <i class="fab fa-linkedin text-sm"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Send Message Form -->
+                <div class="lg:col-span-7">
+                    <form onsubmit="handleFormSubmit(event)" class="glow-card rounded-2xl p-6 sm:p-8 space-y-5">
+                        <h4 class="text-xl font-bold text-white mb-4">Kirim Pesan</h4>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-2">Nama Lengkap</label>
+                                <input type="text" required placeholder="Masukkan nama Anda" class="w-full bg-darkbg/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-2">Alamat Email</label>
+                                <input type="email" required placeholder="nama@email.com" class="w-full bg-darkbg/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-gray-400 mb-2">Subjek</label>
+                            <input type="text" required placeholder="Subjek pesan" class="w-full bg-darkbg/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-gray-400 mb-2">Pesan</label>
+                            <textarea rows="4" required placeholder="Tuliskan pesan Anda di sini..." class="w-full bg-darkbg/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full gradient-btn py-3.5 rounded-xl font-semibold text-white text-sm shadow-lg hover:scale-[1.01] transition-all flex items-center justify-center space-x-2">
+                            <i class="fas fa-paper-plane text-xs"></i>
+                            <span>Kirim Pesan</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-white/5 text-center text-xs text-gray-500">
+        <div class="max-w-6xl mx-auto px-4">
+            <p>&copy; 2026 Nafran Budiman • Mahasiswa S1 Sistem Informasi UNESA. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Export HTML Modal -->
+    <div id="codeModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cardbg border border-white/10 rounded-2xl w-full max-w-2xl p-6 relative max-h-[85vh] flex flex-col">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                    <i class="fas fa-file-code text-blue-400"></i>
+                    <span>Export File Portofolio</span>
+                </h3>
+                <button onclick="closeCodeModal()" class="text-gray-400 hover:text-white p-1">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="py-4 text-xs text-gray-400 space-y-3 overflow-y-auto">
+                <p>Anda dapat mengunduh atau menyalin kode HTML portofolio ini untuk keperluan tugas atau penyuntingan lokal di VS Code.</p>
+                <div class="bg-darkbg p-4 rounded-xl border border-white/5 font-mono text-[11px] text-gray-300 max-h-48 overflow-y-auto">
+                    &lt;!DOCTYPE html&gt;<br>
+                    &lt;html lang="id" class="dark scroll-smooth"&gt;<br>
+                    ... (Full HTML Code Included)
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-white/10 flex justify-end space-x-3">
+                <button onclick="copySourceCode()" class="px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-white font-medium transition-colors">
+                    <i class="far fa-copy mr-1.5"></i> Salin Kode
+                </button>
+                <button onclick="downloadHTML()" class="px-5 py-2.5 rounded-xl gradient-btn text-xs text-white font-semibold transition-transform hover:scale-105">
+                    <i class="fas fa-download mr-1.5"></i> Unduh index.html
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // Photo Preview Functionality
+        function previewUploadedPhoto(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('profileImage');
+                    if (img) {
+                        img.src = e.target.result;
+                        showToast('Foto profil berhasil diperbarui!');
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Toast Function
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = message;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Copy Email to Clipboard
+        function copyEmail(email) {
+            const tempInput = document.createElement('input');
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            
+            showToast('Email ' + email + ' telah disalin!');
+        }
+
+        // Handle Form Submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            showToast('Pesan Anda berhasil terkirim!');
+            event.target.reset();
+        }
+
+        // Modal Code Controls
+        function copySourceCode() {
+            const fullDoc = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            const tempArea = document.createElement('textarea');
+            tempArea.value = fullDoc;
+            document.body.appendChild(tempArea);
+            tempArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempArea);
+
+            showToast('Seluruh kode HTML portofolio berhasil disalin!');
+        }
+
+        function downloadHTML() {
+            const fullDoc = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            const blob = new Blob([fullDoc], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'index.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('File index.html berhasil diunduh!');
+        }
+
+        function closeCodeModal() {
+            document.getElementById('codeModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
